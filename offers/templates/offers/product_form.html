@@ -1,0 +1,55 @@
+<form method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Save</button>
+</form>
+
+
+
+<!--
+<form method="post">
+  {% csrf_token %}
+  <div>
+    <label for="{{ form.name.auto_id }}">Name:</label>
+    {{ form.name }}
+    {% if form.name.errors %}
+      <div class="errors">{{ form.name.errors }}</div>
+    {% endif %}
+  </div>
+
+  <div>
+    <label for="{{ form.description.auto_id }}">Description:</label>
+    {{ form.description }}
+    {% if form.description.errors %}
+      <div class="errors">{{ form.description.errors }}</div>
+    {% endif %}
+  </div>
+
+  <div>
+    <label for="{{ form.price.auto_id }}">Price:</label>
+    {{ form.price }}
+    {% if form.price.errors %}
+      <div class="errors">{{ form.price.errors }}</div>
+    {% endif %}
+  </div>
+
+  <div>
+    <label for="{{ form.image.auto_id }}">Image:</label>
+    {{ form.image }}
+    {% if form.image.errors %}
+      <div class="errors">{{ form.image.errors }}</div>
+    {% endif %}
+  </div>
+
+  <div>
+    <label for="{{ form.category.auto_id }}">Category:</label>
+    {{ form.category }}
+    {% if form.category.errors %}
+      <div class="errors">{{ form.category.errors }}</div>
+    {% endif %}
+  </div>
+
+  <button type="submit">Save</button>
+</form>
+
+-->

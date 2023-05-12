@@ -1,0 +1,30 @@
+.fixed-size-card {
+    width: 100%;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+}
+
+.fixed-size-card .card-img-top {
+    height: 60%;
+    object-fit: cover;
+}
+.card.text {
+    padding: 0.5rem;
+}
+.fixed-size-card .card-body {
+    height: 40%;
+    overflow-y: auto;
+    padding= 1rem;
+}
+
+.container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+}
+
+

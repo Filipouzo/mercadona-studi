@@ -1,0 +1,15 @@
+{% extends 'mercadona/base.html' %}
+
+{% block title %}Liste des produits{% endblock %}
+
+{% block content %}
+
+
+    <div class="container">
+        <h1>Bienvenue sur Mercadona</h1>
+        <h2>Des promos toute l'année !</h2>
+        <a class="nav-link" href="{% url 'offers_list' %}">Voir nos produits</a>
+    </div>
+
+
+{% endblock %}

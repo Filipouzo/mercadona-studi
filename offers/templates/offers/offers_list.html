@@ -1,0 +1,56 @@
+{% extends 'mercadona/base.html' %}
+
+{% block title %}Liste des produits{% endblock %}
+
+{% block content %}
+
+
+  <h1 class="text-center my-4">Liste des offres{% if product.category.name %} - Catégorie : {{ product.category.name }}{% endif %}</h1>
+  <div class="container">
+    <div class="row">
+
+
+      <div class="aside col-md-2">
+          <h3>Filtrer</h3>
+          <form method="get">
+              {{ form.as_p }}
+              <button type="submit" class="btn btn-primary">Filtrer</button>
+          </form>
+      </div>
+
+
+
+      <div class="col-md-10">
+        <div class="row">
+            {% for product in products %}
+              <div class="col-xl-3 col-md-5 col-10 mb-4">
+                <div class="card fixed-size-card">
+                  {% if product.image %}
+                      <img src="{{ product.image.url }}" alt="{{ product.name }}" class="card-img-top">
+                  {% endif %}
+                  <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">{{ product.description|truncatewords:6 }}</p>
+                    <p class="card-text">
+                      {% if product.is_promoted %}
+                        <span style="font-weight: bold; color: red;">{{ product.promoted_price }}</span>
+                      {% else %}
+                        {{ product.price }} €
+                      {% endif %}
+                    </p>
+                    {% if product.current_promotion %}
+                      <span class="badge badge-success">Promotion: {{ product.current_promotion.percentage_discount }}%</span>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            {% empty %}
+              <div class="col-12">
+                <p>No products available.</p>
+              </div>
+            {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
