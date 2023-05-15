@@ -1,2 +1,2 @@
 web: gunicorn mercadona.wsgi --log-file -
-release: python manage.py loaddata fixtures/offers_data.json
+release: python manage.py loaddata offers/fixtures/offers_data.json
