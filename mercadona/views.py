@@ -15,7 +15,7 @@ def login_view(request):
             user = form.get_user()
             login(request, user)
             return redirect(
-                'offers_list')  # Remplacez 'home' par le nom de l'URL vers laquelle vous voulez rediriger l'utilisateur
+                'admin')  # Remplacez 'home' par le nom de l'URL vers laquelle vous voulez rediriger l'utilisateur
     else:
         form = LoginForm()
     return render(request, 'mercadona/login.html', {'form': form})
