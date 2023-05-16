@@ -7,15 +7,15 @@ from PIL import Image
 
 fake = Faker()
 
-# Configuration
+# Nombre de produits et categories
 num_categories = 5
 num_products_per_category = 10
 images_directory = 'media/products'
 
-# Créez le répertoire des images s'il n'existe pas
+# Crée le répertoire des images s'il n'existe pas
 os.makedirs(images_directory, exist_ok=True)
 
-# Génération des données
+# créations des fixtures catégories et produits
 categories = []
 products = []
 
@@ -29,34 +29,28 @@ for category_id in range(1, num_categories + 1):
     })
 
     for product_id in range(1, num_products_per_category + 1):
-        # Générez une URL d'image aléatoire
+        # Va chercher les images aléatoires sur picsum
         image_url = "https://picsum.photos/350/300"
-
-        # Téléchargez l'image
         response = requests.get(image_url)
 
-        # Enregistrez temporairement l'image téléchargée
+        # Enregistre temporairement l'image téléchargée
         temp_image_path = os.path.join(images_directory, 'temp_image')
 
         with open(temp_image_path, 'wb') as f:
             f.write(response.content)
 
-        # Ouvrez l'image avec Pillow
+        # Redimenssionne l'image avec pillow et la converti en jpg
         image = Image.open(temp_image_path)
-
-        # Redimensionnez l'image (par exemple, en largeur maximale de 800 pixels)
         target_size = (800, 600)
         image.thumbnail(target_size)
-
-        # Convertissez l'image en JPEG
         image = image.convert('RGB')
 
-        # Enregistrez l'image traitée dans le répertoire des images
+        # Enregistre l'image sus media/products
         image_filename = f"image{product_id}.jpg"
         image_path = os.path.join(images_directory, image_filename)
         image.save(image_path, 'JPEG', quality=90)
 
-        # Supprimez l'image temporaire
+        # Supprime l'image temporaire
         os.remove(temp_image_path)
 
         products.append({
