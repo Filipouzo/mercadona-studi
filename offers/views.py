@@ -3,14 +3,8 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .forms import ProductForm, CategoryFilterForm
 from .models import Product
 from django.contrib.auth.decorators import user_passes_test
-
-
-# Create your views here.
-
-
-# A supprimer ?
-# def base(request):
-#     return render(request, "offers/base.html")
+from django.template.loader import render_to_string
+from django.http import JsonResponse
 
 
 def offers_list(request):
@@ -22,7 +16,11 @@ def offers_list(request):
         if category:
             queryset = queryset.filter(category=category)
 
+    if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+        return render(request, 'offers/offers_list_partial.html', {'products': queryset})
+
     return render(request, "offers/offers_list.html", {'form': form, 'products': queryset})
+
 
 
 def est_admin(user):
@@ -33,25 +31,3 @@ def est_admin(user):
 def page_admin(request):
     return HttpResponse("Bienvenue sur la page réservée aux administrateurs.")
 
-
-def product_create(request):
-    if request.method == 'POST':
-        form = ProductForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            return redirect('offers_list')
-    else:
-        form = ProductForm()
-    return render(request, 'offers/product_form.html', {'form': form})
-
-
-def product_update(request, pk):
-    product = get_object_or_404(Product, pk=pk)
-    if request.method == 'POST':
-        form = ProductForm(request.POST, request.FILES, instance=product)
-        if form.is_valid():
-            form.save()
-            return redirect('offers_list')
-    else:
-        form = ProductForm(instance=product)
-    return render(request, 'offers/product_form.html', {'form': form})
