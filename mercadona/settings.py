@@ -157,6 +157,12 @@ STATICFILES_DIRS = (
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+# ATTENTION : a des fins de test uniquement, configuration pour que whitenoise charge également dans les statics les fichiers images générés par le fixtures.
+WHITENOISE_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+
+
 # Now we set up settings for S3
 if 'AWS_STORAGE_BUCKET_NAME' in os.environ:
     AWS_STORAGE_BUCKET_NAME = os.environ['AWS_STORAGE_BUCKET_NAME']
