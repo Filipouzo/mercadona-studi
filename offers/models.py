@@ -1,5 +1,8 @@
+from decimal import Decimal
+
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
+
 
 
 class Category(models.Model):
@@ -19,6 +22,12 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+    def discounted_price(self):
+        if hasattr(self, 'promotion'):
+            discount = Decimal(self.promotion.discount_percentage / 100)
+            return round(self.price * (1 - discount), 2)
+        else:
+            return self.price
 
 class Promotion(models.Model):
     product = models.OneToOneField(Product, on_delete=models.CASCADE)

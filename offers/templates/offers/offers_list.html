@@ -31,15 +31,12 @@
                   <div class="card-body">
                     <h5 class="card-title">{{ product.name }}</h5>
                     <p class="card-text">{{ product.description|truncatewords:6 }}</p>
-                    <p class="card-text">
-                      {% if product.is_promoted %}
-                        <span style="font-weight: bold; color: red;">{{ product.promoted_price }}</span>
-                      {% else %}
-                        {{ product.price }} €
-                      {% endif %}
-                    </p>
-                    {% if product.current_promotion %}
-                      <span class="badge badge-success">Promotion: {{ product.current_promotion.percentage_discount }}%</span>
+                    {% if product.promotion.discount_percentage > 0 %}
+                        <del class="text-muted">{{ product.price }} €</del>
+                        <span class="badge bg-danger">{{ product.promotion.discount_percentage }}%</span>
+                        <span class="text-success">{{ product.discounted_price }} €</span>
+                    {% else %}
+                        <p class="card-text">{{ product.price }}</p>
                     {% endif %}
                   </div>
                 </div>
