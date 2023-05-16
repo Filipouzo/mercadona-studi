@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 import django_heroku
 from pathlib import Path
-import dj_database_url
 from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -156,10 +155,6 @@ STATICFILES_DIRS = (
 # Media Files (user uploaded files)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-# ATTENTION : a des fins de test uniquement, configuration pour que whitenoise charge également dans les statics les fichiers images générés par le fixtures.
-WHITENOISE_ROOT = os.path.join(BASE_DIR, 'media')
-
 
 
 
