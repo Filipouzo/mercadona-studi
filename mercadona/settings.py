@@ -149,7 +149,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # The list of finder classes that know how to find static files in various locations.
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'offers/static'),
 )
 
 # Media Files (user uploaded files)
