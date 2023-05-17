@@ -9,7 +9,6 @@
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     {% load django_bootstrap5 %}
-    {% load static %}
     {% bootstrap_css %}
 </head>
 <body>
@@ -44,7 +43,11 @@
     <footer>
         <!-- Footer à venir -->
     </footer>
+
+
     {% bootstrap_javascript %}
-<script src="https://studi-mercadona.herokuapp.com//static/js/filter.js"></script>
+
+    {% block javascript %}
+    {% endblock %}
 </body>
 </html>

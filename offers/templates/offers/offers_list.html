@@ -1,5 +1,5 @@
 {% extends 'mercadona/base.html' %}
-
+{% load static %}
 {% block title %}Liste des produits{% endblock %}
 
 {% block content %}
@@ -24,6 +24,8 @@
       </div>
     </div>
   </div>
+{% endblock %}
 
-
+{% block javascript %}
+    <script src="{% static 'js/filter.js' %}"></script>
 {% endblock %}

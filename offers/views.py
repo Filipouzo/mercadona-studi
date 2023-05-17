@@ -17,8 +17,11 @@ def offers_list(request):
             queryset = queryset.filter(category=category)
 
     if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+
+        # print("C'est une requête AJAX")  # Ajout du point de contrôle
         return render(request, 'offers/product_list_partial.html', {'products': queryset})
 
+    # print("Ce n'est pas une requête AJAX")  # Ajout du point de contrôle
     return render(request, "offers/offers_list.html", {'form': form, 'products': queryset})
 
 
