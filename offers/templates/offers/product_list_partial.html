@@ -1,0 +1,26 @@
+<div class="row">
+    {% for product in products %}
+        <div class="col-xl-3 col-md-5 col-10 mb-4">
+            <div class="card fixed-size-card">
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="card-img-top">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <p class="card-text">{{ product.description|truncatewords:6 }}</p>
+                    {% if product.promotion.discount_percentage > 0 %}
+                        <del class="text-muted">{{ product.price }} €</del>
+                        <span class="badge bg-danger">{{ product.promotion.discount_percentage }}%</span>
+                        <span class="text-success">{{ product.discounted_price }} €</span>
+                    {% else %}
+                        <p class="card-text">{{ product.price }} €</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <div class="col-12">
+            <p>Il n'y a pas de produit dans cette catégorie.</p>
+        </div>
+    {% endfor %}
+</div>

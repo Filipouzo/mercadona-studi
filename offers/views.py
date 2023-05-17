@@ -17,10 +17,9 @@ def offers_list(request):
             queryset = queryset.filter(category=category)
 
     if request.headers.get('x-requested-with') == 'XMLHttpRequest':
-        return render(request, 'offers/offers_list_partial.html', {'products': queryset})
+        return render(request, 'offers/product_list_partial.html', {'products': queryset})
 
     return render(request, "offers/offers_list.html", {'form': form, 'products': queryset})
-
 
 
 def est_admin(user):
@@ -30,4 +29,3 @@ def est_admin(user):
 @user_passes_test(est_admin, login_url='/login/')
 def page_admin(request):
     return HttpResponse("Bienvenue sur la page réservée aux administrateurs.")
-

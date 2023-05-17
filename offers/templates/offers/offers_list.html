@@ -3,9 +3,7 @@
 {% block title %}Liste des produits{% endblock %}
 
 {% block content %}
-
-
-  <h1 class="text-center my-4">Liste des offres{% if product.category.name %} - Catégorie : {{ product.category.name }}{% endif %}</h1>
+  <h1 class="text-center my-4">Liste des offres</h1>
   <div class="container">
     <div class="row">
 
@@ -20,10 +18,12 @@
 
 
       <div class="col-md-10">
-        <div class="row" id="product-list">
-            {% include 'offers/offers_list_partial.html' %}
+        <div id="product-list">
+            {% include 'offers/product_list_partial.html' %}
         </div>
       </div>
     </div>
   </div>
+
+
 {% endblock %}
