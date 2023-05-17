@@ -10,7 +10,7 @@
     object-fit: cover;
 }
 .card.text {
-    padding: 0.5rem;
+    padding: 0.8rem;
 }
 .fixed-size-card .card-body {
     height: 40%;
@@ -19,12 +19,13 @@
 }
 
 .container {
+
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    font-size: 0.5rem;
+    font-size: 0.9rem;
 }
 
 
