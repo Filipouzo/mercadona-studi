@@ -6,31 +6,32 @@ from ..models import Product, Promotion, Category
 
 class PromotionModelTest(TestCase):
     def setUp(self):
-        self.category = Category.objects.create(name='Testcategories')
-        self.product = Product.objects.create(name='TestProduct', description='TestDescription', price=100,
-                                              category=self.category)
+        self.category = Category.objects.create(name='Vêtements')
 
     def test_promotion_is_active(self):
-        # Create a promotion that started yesterday and ends tomorrow
+        # Promo partant d'hier et finissant demain
         start_date = timezone.now().date() - timedelta(days=1)
         end_date = timezone.now().date() + timedelta(days=1)
-        promotion = Promotion.objects.create(product=self.product, start_date=start_date, end_date=end_date,
-                                             discount_percentage=10)
+        product1 = Product.objects.create(name='short1', description='red', price=100, category=self.category)
+        promotion1 = Promotion.objects.create(product=product1, start_date=start_date, end_date=end_date,
+                                              discount_percentage=10)
 
-        self.assertTrue(promotion.is_active())
+        self.assertTrue(promotion1.is_active())
 
-        # Create a promotion that ended yesterday
+        # Promo qui s'est terminée hier
         start_date = timezone.now().date() - timedelta(days=2)
         end_date = timezone.now().date() - timedelta(days=1)
-        promotion = Promotion.objects.create(product=self.product, start_date=start_date, end_date=end_date,
-                                             discount_percentage=10)
+        product2 = Product.objects.create(name='short2', description='blue', price=100, category=self.category)
+        promotion2 = Promotion.objects.create(product=product2, start_date=start_date, end_date=end_date,
+                                              discount_percentage=10)
 
-        self.assertFalse(promotion.is_active())
+        self.assertFalse(promotion2.is_active())
 
-        # Create a promotion that starts tomorrow
+        # Promo qui commence demain
         start_date = timezone.now().date() + timedelta(days=1)
         end_date = timezone.now().date() + timedelta(days=2)
-        promotion = Promotion.objects.create(product=self.product, start_date=start_date, end_date=end_date,
-                                             discount_percentage=10)
+        product3 = Product.objects.create(name='short3', description='green', price=100, category=self.category)
+        promotion3 = Promotion.objects.create(product=product3, start_date=start_date, end_date=end_date,
+                                              discount_percentage=10)
 
-        self.assertFalse(promotion.is_active())
+        self.assertFalse(promotion3.is_active())
