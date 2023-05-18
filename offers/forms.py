@@ -20,3 +20,7 @@ class PromotionForm(forms.ModelForm):
     class Meta:
         model = Promotion
         fields = ['start_date', 'end_date', 'discount_percentage']
+        widgets = {
+            'start_date': forms.DateInput(attrs={'type': 'date'}),
+            'end_date': forms.DateInput(attrs={'type': 'date'}),
+        }
