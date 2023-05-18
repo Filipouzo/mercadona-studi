@@ -1,14 +1,14 @@
-<!--{% if messages %}-->
-<!--    <ul class="messages">-->
-<!--        {% for message in messages %}-->
-<!--            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>-->
-<!--        {% endfor %}-->
-<!--    </ul>-->
-<!--{% endif %}-->
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
 
 {% if product.promotion %}
     {% if product.promotion.is_active %}
-        <p>Une promotion est d&jà active pour ce projet</p>
+        <p>Une promotion est déjà active pour ce projet</p>
     {% else %}
         <form method="post">
             {% csrf_token %}
