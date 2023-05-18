@@ -29,9 +29,12 @@ def add_promotion(request, product_id):
     product = get_object_or_404(Product, id=product_id)
     existing_promotion = Promotion.objects.filter(product=product).first()
 
-    if existing_promotion:
-        messages.error(request, "Une promotion existe déjà pour ce produit.")
-        return redirect('offers_list')
+    try:
+        existing_promotion = Promotion.objects.get(product=product)
+        existing_promotion.delete()
+        messages.info(request, 'Une ancienne promotion a été supprimée.')
+    except Promotion.DoesNotExist:
+        pass
 
     if request.method == 'POST':
         form = PromotionForm(request.POST)

@@ -1,8 +1,7 @@
 from decimal import Decimal
-
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
-
+from django.utils import timezone
 
 
 class Category(models.Model):
@@ -29,6 +28,7 @@ class Product(models.Model):
         else:
             return self.price
 
+
 class Promotion(models.Model):
     product = models.OneToOneField(Product, on_delete=models.CASCADE)
     start_date = models.DateField()
@@ -36,6 +36,10 @@ class Promotion(models.Model):
     discount_percentage = models.PositiveIntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(100)]
     )
+
+    def is_active(self):
+        today = timezone.now().date()
+        return self.start_date <= today <= self.end_date
 
     def __str__(self):
         return f"{self.product.name} - {self.discount_percentage}%"

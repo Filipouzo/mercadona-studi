@@ -13,6 +13,7 @@
 </head>
 <body>
 
+    <script src="https://unpkg.com/sweetalert@2"></script>
     <header>
       <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="{% url 'index' %}">
@@ -44,10 +45,21 @@
         <!-- Footer à venir -->
     </footer>
 
-
+     <script>
+        {% for message in messages %}
+        Swal.fire({
+          icon: '{{ message.tags }}',
+          title: '{{ message }}',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        {% endfor %}
+    </script>
     {% bootstrap_javascript %}
 
     {% block javascript %}
     {% endblock %}
+
+
 </body>
 </html>

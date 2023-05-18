@@ -8,7 +8,7 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ product.name }}</h5>
                     <p class="card-text">{{ product.description|truncatewords:6 }}</p>
-                    {% if product.promotion.discount_percentage > 0 %}
+                    {% if product.promotion.is_active %}
                         <del class="text-muted">{{ product.price }} €</del>
                         <span class="badge bg-danger">{{ product.promotion.discount_percentage }}%</span>
                         <span class="discounted">{{ product.discounted_price }} €</span>
