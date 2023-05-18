@@ -11,9 +11,14 @@
                     {% if product.promotion.discount_percentage > 0 %}
                         <del class="text-muted">{{ product.price }} €</del>
                         <span class="badge bg-danger">{{ product.promotion.discount_percentage }}%</span>
-                        <span class="text-success">{{ product.discounted_price }} €</span>
+                        <span class="discounted">{{ product.discounted_price }} €</span>
+
                     {% else %}
                         <p class="card-text">{{ product.price }} €</p>
+                        {% if user.is_superuser %}
+                            <a href="{% url 'add_promotion' product.id %}">Ajouter une promotion</a>
+                        {% endif %}
+
                     {% endif %}
                 </div>
             </div>

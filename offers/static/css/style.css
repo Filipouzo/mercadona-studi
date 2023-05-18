@@ -29,4 +29,7 @@
     font-size: 0.9rem;
 }
 
-
+.discounted {
+    color: red;
+    font-weight: bold;
+}

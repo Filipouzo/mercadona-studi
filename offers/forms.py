@@ -1,5 +1,5 @@
 from django import forms
-from .models import Product, Category
+from .models import Product, Category, Promotion
 
 
 class ProductForm(forms.ModelForm):
@@ -14,3 +14,9 @@ class CategoryFilterForm(forms.Form):
         required=False,
         label="Catégorie"
     )
+
+
+class PromotionForm(forms.ModelForm):
+    class Meta:
+        model = Promotion
+        fields = ['start_date', 'end_date', 'discount_percentage']
